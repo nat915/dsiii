@@ -1,3 +1,5 @@
+git clone --branch front --single-branch https://github.com/nat915/dsiii.git
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

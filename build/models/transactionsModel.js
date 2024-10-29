@@ -37,6 +37,16 @@ const Transactions = connection_1.default.define('transactions', {
             key: 'id'
         },
         onDelete: 'CASCADE'
+    },
+    createdAt: {
+        type: sequelize_1.DataTypes.DATE,
+        allowNull: false,
+        defaultValue: sequelize_1.DataTypes.NOW
+    },
+    updatedAt: {
+        type: sequelize_1.DataTypes.DATE,
+        allowNull: false,
+        defaultValue: sequelize_1.DataTypes.NOW
     }
 }, {
     tableName: 'transactions',

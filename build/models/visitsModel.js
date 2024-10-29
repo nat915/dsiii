@@ -33,6 +33,16 @@ const Visits = connection_1.default.define('visits', {
             key: 'id'
         },
         onDelete: 'CASCADE'
+    },
+    createdAt: {
+        type: sequelize_1.DataTypes.DATE,
+        allowNull: false,
+        defaultValue: sequelize_1.DataTypes.NOW
+    },
+    updatedAt: {
+        type: sequelize_1.DataTypes.DATE,
+        allowNull: false,
+        defaultValue: sequelize_1.DataTypes.NOW
     }
 }, {
     tableName: 'visits',

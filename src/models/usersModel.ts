@@ -38,7 +38,7 @@ const Users = db.define('users', {
         defaultValue: DataTypes.NOW
     }
 }, {
-    tableName: 'userss',  // Asegura que use la tabla llamada 'users'
+    tableName: 'users',  // Asegura que use la tabla llamada 'users'
     timestamps: true  // Para que Sequelize maneje automáticamente createdAt y updatedAt
 });
 

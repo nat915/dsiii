@@ -30,6 +30,16 @@ const Users = connection_1.default.define('users', {
     rol: {
         type: sequelize_1.DataTypes.ENUM('administrador', 'cliente'),
         allowNull: false
+    },
+    createdAt: {
+        type: sequelize_1.DataTypes.DATE,
+        allowNull: false,
+        defaultValue: sequelize_1.DataTypes.NOW
+    },
+    updatedAt: {
+        type: sequelize_1.DataTypes.DATE,
+        allowNull: false,
+        defaultValue: sequelize_1.DataTypes.NOW
     }
 }, {
     tableName: 'users', // Asegura que use la tabla llamada 'users'

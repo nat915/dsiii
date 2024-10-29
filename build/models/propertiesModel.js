@@ -47,6 +47,16 @@ const Properties = connection_1.default.define('properties', {
             key: 'id'
         },
         onDelete: 'CASCADE'
+    },
+    createdAt: {
+        type: sequelize_1.DataTypes.DATE,
+        allowNull: false,
+        defaultValue: sequelize_1.DataTypes.NOW
+    },
+    updatedAt: {
+        type: sequelize_1.DataTypes.DATE,
+        allowNull: false,
+        defaultValue: sequelize_1.DataTypes.NOW
     }
 }, {
     tableName: 'properties',

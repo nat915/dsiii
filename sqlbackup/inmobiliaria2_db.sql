@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-10-2024 a las 22:24:16
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 8.1.6
+-- Tiempo de generación: 31-10-2024 a las 00:52:56
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,24 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `inmobiliaria2_db`
 --
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `addresses`
---
-
-CREATE TABLE `addresses` (
-  `id` bigint(20) NOT NULL,
-  `calle` varchar(255) NOT NULL,
-  `ciudad` varchar(255) NOT NULL,
-  `estado` varchar(255) NOT NULL,
-  `pais` varchar(255) NOT NULL,
-  `codigo_postal` varchar(20) NOT NULL,
-  `usuario_id` bigint(20) NOT NULL,
-  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
-  `updatedAt` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -58,7 +40,7 @@ CREATE TABLE `properties` (
   `usuario_id` bigint(20) NOT NULL,
   `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
   `updatedAt` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -73,7 +55,7 @@ CREATE TABLE `property_images` (
   `propiedad_id` bigint(20) NOT NULL,
   `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
   `updatedAt` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -90,7 +72,7 @@ CREATE TABLE `transactions` (
   `usuario_id` bigint(20) NOT NULL,
   `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
   `updatedAt` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -107,15 +89,23 @@ CREATE TABLE `users` (
   `contraseña` varchar(255) NOT NULL,
   `rol` enum('administrador','cliente') NOT NULL,
   `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
-  `updatedAt` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `updatedAt` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `calle` varchar(255) DEFAULT NULL,
+  `ciudad` varchar(255) DEFAULT NULL,
+  `estado` varchar(255) DEFAULT NULL,
+  `pais` varchar(255) DEFAULT NULL,
+  `codigo_postal` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `nombre`, `apellido`, `email`, `telefono`, `contraseña`, `rol`, `createdAt`, `updatedAt`) VALUES
-(1, 'Juan', 'Pérez', 'juan.perez@example.com', '1234567890', 'contraseñaSegura123', 'cliente', '2024-10-23 17:03:39', '2024-10-23 17:03:39');
+INSERT INTO `users` (`id`, `nombre`, `apellido`, `email`, `telefono`, `contraseña`, `rol`, `createdAt`, `updatedAt`, `calle`, `ciudad`, `estado`, `pais`, `codigo_postal`) VALUES
+(7, 'María', 'López', 'maria.lopez@example.com', '0987654321', 'seguraContraseña456', 'cliente', '2024-10-24 10:15:00', '2024-10-24 10:15:00', 'Calle 2', 'Ciudad B', 'Estado Y', 'País Z', '54321'),
+(8, 'Carlos', 'García', 'carlos.garcia@example.com', '1122334455', 'passSegura789', 'administrador', '2024-10-25 08:20:15', '2024-10-25 08:20:15', 'Avenida 3', 'Ciudad C', 'Estado Z', 'País X', '67890'),
+(9, 'Ana', 'Martínez', 'ana.martinez@example.com', '5566778899', 'contraseñaAna123', 'cliente', '2024-10-26 11:30:45', '2024-10-26 11:30:45', 'Boulevard 4', 'Ciudad D', 'Estado W', 'País Y', '11223'),
+(10, 'Luis', 'Rodríguez', 'luis.rodriguez@example.com', '6677889900', 'seguraPass101', 'cliente', '2024-10-27 14:00:30', '2024-10-27 14:00:30', 'Calle 5', 'Ciudad E', 'Estado V', 'País Z', '33445');
 
 -- --------------------------------------------------------
 
@@ -131,18 +121,11 @@ CREATE TABLE `visits` (
   `usuario_id` bigint(20) NOT NULL,
   `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
   `updatedAt` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Índices para tablas volcadas
 --
-
---
--- Indices de la tabla `addresses`
---
-ALTER TABLE `addresses`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_usuario_direccion` (`usuario_id`);
 
 --
 -- Indices de la tabla `properties`
@@ -185,12 +168,6 @@ ALTER TABLE `visits`
 --
 
 --
--- AUTO_INCREMENT de la tabla `addresses`
---
-ALTER TABLE `addresses`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `properties`
 --
 ALTER TABLE `properties`
@@ -212,7 +189,7 @@ ALTER TABLE `transactions`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `visits`
@@ -223,12 +200,6 @@ ALTER TABLE `visits`
 --
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `addresses`
---
-ALTER TABLE `addresses`
-  ADD CONSTRAINT `fk_usuario_direccion` FOREIGN KEY (`usuario_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `property_images`

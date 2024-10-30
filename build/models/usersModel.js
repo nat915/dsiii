@@ -21,7 +21,7 @@ const Users = connection_1.default.define('users', {
     },
     telefono: {
         type: sequelize_1.DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     contraseña: {
         type: sequelize_1.DataTypes.STRING,
@@ -29,7 +29,27 @@ const Users = connection_1.default.define('users', {
     },
     rol: {
         type: sequelize_1.DataTypes.ENUM('administrador', 'cliente'),
-        allowNull: false
+        allowNull: true
+    },
+    calle: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: true
+    },
+    ciudad: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: true
+    },
+    estado: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: true
+    },
+    pais: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: true
+    },
+    codigo_postal: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: true
     },
     createdAt: {
         type: sequelize_1.DataTypes.DATE,
@@ -42,7 +62,7 @@ const Users = connection_1.default.define('users', {
         defaultValue: sequelize_1.DataTypes.NOW
     }
 }, {
-    tableName: 'users', // Asegura que use la tabla llamada 'users'
-    timestamps: true // Para que Sequelize maneje automáticamente createdAt y updatedAt
+    tableName: 'users',
+    timestamps: true
 });
 exports.default = Users;

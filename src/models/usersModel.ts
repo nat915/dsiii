@@ -17,7 +17,7 @@ const Users = db.define('users', {
     },
     telefono: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     contraseña: {
         type: DataTypes.STRING,
@@ -25,7 +25,27 @@ const Users = db.define('users', {
     },
     rol: {
         type: DataTypes.ENUM('administrador', 'cliente'),
-        allowNull: false
+        allowNull: true
+    },
+    calle: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    ciudad: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    estado: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    pais: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    codigo_postal: {
+        type: DataTypes.STRING,
+        allowNull: true
     },
     createdAt: {
         type: DataTypes.DATE,
@@ -38,8 +58,8 @@ const Users = db.define('users', {
         defaultValue: DataTypes.NOW
     }
 }, {
-    tableName: 'users',  // Asegura que use la tabla llamada 'users'
-    timestamps: true  // Para que Sequelize maneje automáticamente createdAt y updatedAt
+    tableName: 'users',
+    timestamps: true
 });
 
 export default Users;

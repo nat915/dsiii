@@ -1,3 +1,4 @@
+git clone --branch panel --single-branch https://github.com/nat915/dsiii.git
 # Panel3
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.0.
